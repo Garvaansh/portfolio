@@ -7,7 +7,7 @@ import {
   SiVuedotjs,
   SiJavascript,
   SiHtml5,
-  SiCss3,
+  SiCss,
   SiNodedotjs,
   SiExpress,
   SiPython,
@@ -25,12 +25,12 @@ import {
   SiScikitlearn,
   SiDocker,
   SiGit,
-  SiAmazon,
   SiVercel,
   SiLinux,
   SiNginx,
   SiGithubactions,
 } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 import { TbBrandFramerMotion } from "react-icons/tb";
 
 export type Skill = {
@@ -48,7 +48,7 @@ export const skills = {
     { name: "Vue", icon: SiVuedotjs },
     { name: "JavaScript", icon: SiJavascript },
     { name: "HTML5", icon: SiHtml5 },
-    { name: "CSS3", icon: SiCss3 },
+    { name: "CSS3", icon: SiCss },
     { name: "Vite", icon: SiVite },
   ],
   backend: [
@@ -73,7 +73,7 @@ export const skills = {
   devops: [
     { name: "Docker", icon: SiDocker },
     { name: "Git", icon: SiGit },
-    { name: "AWS", icon: SiAmazon },
+    { name: "AWS", icon: FaAws },
     { name: "Vercel", icon: SiVercel },
     { name: "Linux", icon: SiLinux },
     { name: "Nginx", icon: SiNginx },
