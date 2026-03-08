@@ -4,9 +4,9 @@ export interface AboutScene {
   subtext?: string;
   body?: string;
   stats?: { label: string; value: string }[];
-  bgColor: string;       // Animates the section background
+  bgColor: string; // Animates the section background
   headlineColor: string; // Colors the giant h2
-  textColor: string;     // Colors the paragraphs and stats
+  textColor: string; // Colors the paragraphs and stats
 }
 
 export const aboutContent: { scenes: AboutScene[] } = {
@@ -23,24 +23,23 @@ export const aboutContent: { scenes: AboutScene[] } = {
     {
       id: "engineering",
       headline: "Engineering across the stack.",
-      body: "I don't box myself into one language. Whether I'm building a multilingual RAG backend for CampusMitra, training Graph Neural Networks, or writing a custom PPM image viewer in C++ from scratch, I grab the right tool for the job.",
+      body: "My goal isn’t to collect technologies. It’s to understand them well enough to choose the right one for the job and use it properly. The starting point is always the problem, not the tool. As performance and scalability matters, I’m comfortable dropping down a level to understand what the system is actually doing under the hood.",
       // THE POP: Bright pink background, dark text
-      bgColor: "var(--accent)", 
-      headlineColor: "var(--bg-main)", 
+      bgColor: "var(--accent)",
+      headlineColor: "var(--bg-main)",
       textColor: "var(--bg-dark)",
     },
     {
       id: "execution",
       headline: "Building for the real world.",
-      body: "I treat every project as an excuse to dive into the deep end. From tackling Kaggle datasets to late-night debugging sessions, I'm constantly grinding Data Structures and Algorithms to write more efficient, scalable logic.",
+      body: "I like working on problems where things actually break. Messy edge cases, and systems that need to scale beyond a demo. I focus on fundamentals like data structures and algorithms to build fast, scalable software, and I test that thinking in hackathons with new problems and real constraints.",
       stats: [
         { label: "Core Focus", value: "AI/ML & Full-Stack Web-Dev" },
         { label: "Key Projects", value: "RAG-system & AML Detection" },
-        { label: "Low-Level", value: "Modern C++ & DSA" },
       ],
       // THE HANDOFF: Back to the shadows before the Portal
-      bgColor: "var(--bg-dark)", 
-      headlineColor: "var(--soft)", 
+      bgColor: "var(--bg-dark)",
+      headlineColor: "var(--soft)",
       textColor: "var(--text-secondary)",
     },
   ],
