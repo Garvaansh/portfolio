@@ -1,0 +1,82 @@
+import {
+  SiReact,
+  SiTypescript,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiVite,
+  SiVuedotjs,
+  SiJavascript,
+  SiHtml5,
+  SiCss3,
+  SiNodedotjs,
+  SiExpress,
+  SiPython,
+  SiFastapi,
+  SiDjango,
+  SiPostgresql,
+  SiMongodb,
+  SiRedis,
+  SiGraphql,
+  SiPytorch,
+  SiTensorflow,
+  SiHuggingface,
+  SiLangchain,
+  SiOpenai,
+  SiScikitlearn,
+  SiDocker,
+  SiGit,
+  SiAmazon,
+  SiVercel,
+  SiLinux,
+  SiNginx,
+  SiGithubactions,
+} from "react-icons/si";
+import { TbBrandFramerMotion } from "react-icons/tb";
+
+export type Skill = {
+  name: string;
+  icon: React.ComponentType<{ className?: string }>;
+};
+
+export const skills = {
+  frontend: [
+    { name: "React", icon: SiReact },
+    { name: "TypeScript", icon: SiTypescript },
+    { name: "Next.js", icon: SiNextdotjs },
+    { name: "Tailwind", icon: SiTailwindcss },
+    { name: "GSAP", icon: TbBrandFramerMotion },
+    { name: "Vue", icon: SiVuedotjs },
+    { name: "JavaScript", icon: SiJavascript },
+    { name: "HTML5", icon: SiHtml5 },
+    { name: "CSS3", icon: SiCss3 },
+    { name: "Vite", icon: SiVite },
+  ],
+  backend: [
+    { name: "Node.js", icon: SiNodedotjs },
+    { name: "Express", icon: SiExpress },
+    { name: "Python", icon: SiPython },
+    { name: "FastAPI", icon: SiFastapi },
+    { name: "Django", icon: SiDjango },
+    { name: "PostgreSQL", icon: SiPostgresql },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "Redis", icon: SiRedis },
+    { name: "GraphQL", icon: SiGraphql },
+  ],
+  ai: [
+    { name: "PyTorch", icon: SiPytorch },
+    { name: "TensorFlow", icon: SiTensorflow },
+    { name: "Hugging Face", icon: SiHuggingface },
+    { name: "LangChain", icon: SiLangchain },
+    { name: "OpenAI", icon: SiOpenai },
+    { name: "Scikit-learn", icon: SiScikitlearn },
+  ],
+  devops: [
+    { name: "Docker", icon: SiDocker },
+    { name: "Git", icon: SiGit },
+    { name: "AWS", icon: SiAmazon },
+    { name: "Vercel", icon: SiVercel },
+    { name: "Linux", icon: SiLinux },
+    { name: "Nginx", icon: SiNginx },
+    { name: "GitHub Actions", icon: SiGithubactions },
+  ],
+};
