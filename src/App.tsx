@@ -5,7 +5,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 import Navbar from "./components/shared/Navbar";
-import Hero from "./sections/Hero";
+import Hero from "./sections/Hero/Hero";
 import About from "./sections/About";
 import Portal from "./sections/portal";
 import Projects from "./sections/Projects";
