@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* ── Custom palette → Tailwind utility classes ── */
+  --color-bg-main: var(--bg-main);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-wine: var(--wine);
+  --color-accent: var(--accent);
+  --color-soft: var(--soft);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+
+  /* ── Shadcn UI semantic tokens → Tailwind utility classes ──────────────
+     Shadcn components use classes like bg-primary, text-muted-foreground,
+     bg-background, bg-card, etc. These MUST be registered here or the
+     classes silently produce no output (broken colors / wrong backgrounds). */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Fonts */
+  --font-heading: "Outfit", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-pacifico: "Pacifico", cursive;
+}
+
+:root {
+  /* Dynamic viewport height */
+  --vh: 1vh;
+  --portal-curtain: #0e050a;
+
+  /* Primary System Fonts */
+  --font-heading: "Outfit", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-pacifico: "Pacifico", cursive;
+
+  /* Dark Theme Colors (Default) */
+  --bg-main: #0e050a;
+  --bg-dark: #2b0c1c;
+  --bg-secondary: #2b0c1c99;
+  --bg-card: #2b0c1c;
+  --wine: #6e2b4c;
+  --accent: #aa4d88;
+  --soft: #eab8d2;
+  --border: #6e2b4c;
+
+  /* Text colors */
+  --text-primary: #eab8d2;
+  --text-secondary: #c994b5;
+
+  /* RGB equivalents for alpha compositing */
+  --accent-rgb: 170, 77, 136;
+  --soft-rgb: 234, 184, 210;
+
+  /* ── Shadcn UI semantic tokens — dark theme mapping ─────────────────────
+     Maps shadcn's expected CSS vars onto this project's custom palette.
+     Without these, components like Card, Button, AlertDialog, Badge render
+     with undefined colors (browser default or transparent). */
+  --background: var(--bg-main);
+  --foreground: var(--text-primary);
+  --card: var(--bg-card);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-card);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--accent);
+  --primary-foreground: #fdf6f0;
+  --secondary: var(--bg-dark);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-dark);
+  --muted-foreground: var(--text-secondary);
+  --accent-foreground: var(--text-primary);
+  --destructive: oklch(0.577 0.245 27.325);
+  --input: var(--border);
+  --ring: var(--accent);
+  --radius: 0.625rem;
+}
+
+/* Light Theme Override */
+[data-theme="silk"] {
+  --bg-main: #fdf6f0;
+  --bg-dark: #f3e6dc;
+  --bg-secondary: #f3e6dc99;
+  --bg-card: #f3e6dc;
+  --wine: #a06a7b;
+  --accent: #c45aa0;
+  --soft: #5d2c47;
+  --border: #a06a7b;
+
+  /* Text colors */
+  --text-primary: #5d2c47;
+  --text-secondary: #8d5a70;
+
+  /* RGB equivalents for alpha compositing */
+  --accent-rgb: 196, 90, 160;
+  --soft-rgb: 93, 44, 71;
+
+  /* ── Shadcn UI semantic tokens — silk theme mapping ─────────────────── */
+  --background: var(--bg-main);
+  --foreground: var(--text-primary);
+  --card: var(--bg-card);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-card);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--accent);
+  --primary-foreground: #fdf6f0;
+  --secondary: var(--bg-dark);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-dark);
+  --muted-foreground: var(--text-secondary);
+  --accent-foreground: var(--text-primary);
+  --destructive: oklch(0.637 0.237 25.331);
+  --input: var(--border);
+  --ring: var(--accent);
+  --radius: 0.625rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-bg-main text-text-primary font-sans;
+  }
+}
+
+/* SplitText word wrapper */
+.hero-splitword {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-word {
+  display: inline-block;
+}
+
+.hero-char {
+  display: inline-block;
+}
