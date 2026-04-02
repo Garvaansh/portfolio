@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://notansh.is-a.dev/sitemap.xml
