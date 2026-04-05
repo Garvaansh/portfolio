@@ -27,7 +27,7 @@ const Hero = () => {
     <section
       id="home"
       ref={containerRef}
-      className="relative flex items-center justify-center overflow-hidden"
+      className="relative overflow-hidden"
       style={{
         minHeight: "calc(var(--vh, 1vh) * 100)",
         backgroundColor: "var(--bg-main)",
@@ -44,13 +44,12 @@ const Hero = () => {
       />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-12 py-20">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-12 py-20 min-h-[calc(var(--vh,1vh)*100)] flex flex-col justify-center">
         {/* Mobile status */}
         <div className="lg:hidden mb-6 scale-75 origin-top-left">
           <StatusBadge />
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.2fr)_auto] gap-8 lg:gap-10 xl:gap-12 items-start w-full">
           {/* Left column */}
           <div className="relative">
             <div
@@ -62,13 +61,13 @@ const Hero = () => {
               {/* Headline */}
               <h1
                 data-hero-headline
-                className="hero-headline font-heading text-[clamp(2.25rem,6vw,4rem)] leading-[1.2] text-[var(--soft)]"
+                className="hero-headline flex flex-wrap items-baseline gap-x-3 font-heading text-[clamp(2.25rem,4.5vw,4rem)] text-soft"
               >
                 {heroContent.intro}{" "}
                 <span
                   ref={codenameRef}
                   data-hero-codename
-                  className="inline-block font-pacifico text-[clamp(2.5rem,6.5vw,4.5rem)] text-[var(--accent)]"
+                  className="inline-block font-pacifico text-[clamp(2.5rem,5.5vw,4.5rem)] text-accent"
                 >
                   {heroContent.codename}
                 </span>
@@ -77,7 +76,7 @@ const Hero = () => {
               {/* AKA line */}
               <p
                 data-hero-aka
-                className="flex items-baseline gap-2 font-mono text-[var(--soft)]/80"
+                className="flex flex-wrap items-baseline gap-2 font-mono text-soft/80"
               >
                 <span className="text-sm opacity-60">aka</span>
 
@@ -94,7 +93,7 @@ const Hero = () => {
               <p
                 ref={taglineRef}
                 data-hero-tagline
-                className="hero-tagline max-w-lg text-left leading-relaxed"
+                className="hero-tagline max-w-xl lg:max-w-2xl xl:max-w-3xl text-left leading-relaxed wrap-break-word"
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
@@ -107,7 +106,7 @@ const Hero = () => {
           </div>
 
           {/* Desktop status */}
-          <div className="hidden lg:flex items-start justify-end">
+          <div className="hidden lg:flex items-start">
             <StatusBadge />
           </div>
         </div>

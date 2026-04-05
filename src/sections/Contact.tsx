@@ -20,12 +20,12 @@ const Contact = () => {
     <section
       ref={contactRef}
       id="contact"
-      className="min-h-screen bg-bg-main flex flex-col relative z-10"
+      className="min-h-screen bg-bg-main flex items-center relative z-10"
     >
       {/* Main Content */}
-      <div className="grow grid grid-cols-1 lg:grid-cols-12 items-center mx-auto w-full px-6 py-24 gap-12 lg:gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 items-start lg:items-center mx-auto w-full px-6 py-12 md:py-14 gap-10 lg:gap-12">
         {/* LEFT COLUMN: Anchored to exactly 5 columns (40%) */}
-        <div className="lg:col-span-4 flex flex-col items-center justify-center w-full pt-16 lg:pt-0">
+        <div className="lg:col-span-5 flex flex-col items-center justify-center w-full pt-10 lg:pt-0">
           <div className="flex flex-col items-center text-center lg:text-left w-fit">
             {/* DESKTOP ONLY: Animated Variable Proximity */}
             <div className="flex flex-col items-center lg:items-start w-full">
@@ -36,7 +36,7 @@ const Contact = () => {
                 toFontVariationSettings="'wght' 800"
                 radius={220}
                 falloff="gaussian"
-                className="text-[clamp(2.5rem,10vw,4.5rem)] md:text-6xl lg:text-7xl font-heading font-bold text-text-secondary tracking-widest uppercase leading-none text-balance"
+                className="text-[clamp(2.2rem,8vw,3.8rem)] md:text-6xl lg:text-7xl font-heading font-bold text-text-secondary tracking-widest uppercase leading-none text-balance"
                 style={{ fontFamily: "var(--font-heading)" }}
                 disabled={isMobile}
               />
@@ -47,7 +47,7 @@ const Contact = () => {
                 toFontVariationSettings="'wght' 200"
                 radius={220}
                 falloff="gaussian"
-                className="text-[clamp(3.5rem,15vw,8.5rem)] md:text-8xl lg:text-[8.5rem] font-heading font-extrabold text-accent leading-none mt-1 md:mt-2 tracking-tighter uppercase w-full text-center lg:text-left text-balance"
+                className="text-[clamp(3rem,12vw,7rem)] md:text-7xl lg:text-[7rem] font-heading font-extrabold text-accent leading-none mt-0 md:mt-1 tracking-tighter uppercase w-full text-center lg:text-left text-balance"
                 style={{ fontFamily: "var(--font-heading)" }}
                 disabled={isMobile}
               />
@@ -55,8 +55,8 @@ const Contact = () => {
           </div>
 
           <ScrollReveal
-            containerClassName="mt-6 w-full max-w-md lg:mx-0"
-            textClassName="text-lg md:text-xl font-sans text-[var(--text-secondary)] leading-relaxed text-center lg:text-left"
+            containerClassName="mt-4 w-full max-w-sm lg:mx-0"
+            textClassName="text-base md:text-lg font-sans text-[var(--text-secondary)] leading-relaxed text-center lg:text-left"
             baseOpacity={0.1}
             baseRotation={2}
             enableBlur={true}
@@ -82,7 +82,7 @@ const Contact = () => {
             glowColor="196, 90, 160"
             disableAnimations={false}
             cards={contactBentoCards}
-            cardGridClassName="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8 w-full auto-rows-[9rem] sm:auto-rows-[12rem] lg:auto-rows-[18rem]"
+            cardGridClassName="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-6 w-full auto-rows-[8rem] sm:auto-rows-[10rem] lg:auto-rows-[15rem]"
             disabled={isMobile}
             isMobile={isMobile}
           />

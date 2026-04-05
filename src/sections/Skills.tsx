@@ -138,10 +138,10 @@ const Skills = () => {
       ref={stageRef}
       className="h-screen w-full relative bg-transparent overflow-hidden z-10 flex flex-col items-center"
     >
-      <div className="w-full max-w-7xl mx-auto px-6 pt-18 md:pt-20 z-20 relative">
+      <div className="w-full max-w-7xl mx-auto px-6 pt-14 md:pt-16 z-20 relative">
         <ScrollFloat
           containerClassName="!my-0 text-center"
-          textClassName="text-[clamp(1.5rem,8vw,4.5rem)] font-heading font-bold text-text-primary leading-tight tracking-tight text-center pb-2 px-2"
+          textClassName="text-[clamp(1.3rem,6.5vw,3.8rem)] font-heading font-bold text-text-primary leading-tight tracking-tight text-center pb-1 px-1"
           scrollStart="center bottom+=60%"
           scrollEnd="center center"
         >
@@ -155,13 +155,13 @@ const Skills = () => {
         style={!isMobile ? maskStyle : undefined}
       >
         {/* DESKTOP DIVIDER */}
-        <div className="hidden md:block absolute left-[45%] top-[40%] -translate-y-1/2 w-1.5 h-[35%] bg-(--border)/30 rounded-full z-10" />
+        <div className="hidden md:block absolute left-[45%] top-[42%] -translate-y-1/2 w-1.5 h-[28%] bg-(--border)/30 rounded-full z-10" />
 
         {/* MOBILE DIVIDER */}
         <div className="block md:hidden absolute top-[10%] left-1/2 -translate-x-1/2 w-2/3 h-1 bg-(--border)/40 rounded-full z-30" />
 
         {/* LEFT COLUMN (CATEGORY TITLES) */}
-        <div className="w-full h-[18%] md:w-[45%] md:h-full relative">
+        <div className="w-full h-[15%] md:w-[45%] md:h-full relative">
           {categories.map((category, index) => (
             <div
               key={`title-${category.key}`}
@@ -171,7 +171,7 @@ const Skills = () => {
               className="absolute inset-0 flex items-start md:items-center justify-center md:justify-start w-full"
             >
               <h3
-                className={`relative top-4 md:-top-16 w-full text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold uppercase tracking-wider text-center md:text-left ${
+                className={`relative top-2 md:-top-10 w-full text-xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold uppercase tracking-wider text-center md:text-left ${
                   titleColors[index % titleColors.length]
                 }`}
               >
@@ -183,7 +183,7 @@ const Skills = () => {
 
         {/* RIGHT COLUMN (BADGES) */}
         <div
-          className="w-full h-[82%] md:w-[55%] md:h-full relative"
+          className="w-full h-[85%] md:w-[55%] md:h-full relative"
           style={isMobile ? maskStyle : undefined}
         >
           {categories.map((category, index) => (
@@ -194,7 +194,7 @@ const Skills = () => {
               }}
               className="absolute inset-0 flex items-center justify-center"
             >
-              <div className="flex flex-wrap gap-3 md:gap-5 items-center content-center justify-center w-full max-w-xl">
+              <div className="flex flex-wrap gap-2 md:gap-4 items-center content-center justify-center w-full max-w-lg">
                 {skills[category.key as keyof typeof skills].map((skill) => (
                   <SkillBadge
                     key={skill.name}

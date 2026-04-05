@@ -80,7 +80,7 @@ const ProjectCard = ({
   return (
     <Card
       className={cn(
-        "absolute w-[85vw] max-w-[320px] md:max-w-none md:w-112.5 h-[400px] md:h-130",
+        "absolute max-w-[320px] md:max-w-none w-[min(84vw,300px)] md:w-[min(360px,28vw)] h-[clamp(320px,55vh,500px)] md:h-[clamp(360px,65vh,560px)]",
         "bg-linear-to-br from-bg-card to-bg-main",
         "border border-border/40 rounded-3xl",
         "shadow-[0_0_60px_rgba(0,0,0,0.5)]",

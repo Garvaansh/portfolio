@@ -34,25 +34,26 @@ export default function Logo() {
     }
   };
 
-  const imgClass =
-    "w-30 sm:w-35 md:w-45 lg:w-60 h-auto object-contain absolute top-0 left-0 transition-opacity duration-500";
+  const sizeClass = "w-28 sm:w-32 md:w-36 lg:w-44";
+
+  const imgClass = `${sizeClass} h-auto object-contain absolute top-0 left-0 transition-opacity duration-500`;
 
   return (
     <Button
       variant="ghost"
       size="icon"
       onClick={handleLogoClick}
-      className="fixed top-4 left-1 z-40 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-transparent rounded-lg bg-transparent p-0 h-auto w-auto"
+      className="fixed top-5 left-1 md:left-8 z-40 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-transparent rounded-lg bg-transparent p-0 h-auto w-auto"
       aria-label="Go to home section"
     >
       {/* Wrapper sized to the image — both images stacked, cross-fading */}
-      <div className="relative w-30 sm:w-35 md:w-45 lg:w-60 h-auto">
+      <div className={`relative ${sizeClass} h-auto`}>
         {/* Invisible reference image keeps the wrapper's intrinsic height */}
         <img
           src={darkLogo}
           alt=""
           aria-hidden="true"
-          className="w-30 sm:w-35 md:w-45 lg:w-60 h-auto object-contain opacity-0 pointer-events-none"
+          className={`${sizeClass} h-auto object-contain opacity-0 pointer-events-none`}
           width="600"
           height="200"
           decoding="sync"

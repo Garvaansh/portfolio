@@ -17,8 +17,17 @@ const Projects = () => {
 
   const isMobile = useUIStore((s) => s.isMobile);
 
+  const getViewport = () => {
+    return {
+      vw: window.innerWidth,
+      vh: window.innerHeight,
+    };
+  };
+
   useGSAP(
     () => {
+      const { vw, vh } = getViewport();
+
       const cards = gsap.utils.toArray<HTMLElement>(
         ".project-card",
         stageRef.current,
@@ -26,17 +35,26 @@ const Projects = () => {
       if (!cards.length) return;
 
       const getPositions = () => {
-        const xStep = isMobile ? 0 : 180;
-        const yStep = isMobile ? 30 : 40;
+        const xStep = isMobile ? 0 : Math.min(160, vw * 0.12);
+        const yStep = isMobile ? 24 : Math.min(32, vh * 0.04);
 
-        const globalXOffset = isMobile ? 0 : -120;
-        const globalYOffset = isMobile ? -60 : 0;
+        const globalXOffset = isMobile ? 0 : -Math.min(80, vw * 0.06);
+        const globalYOffset = isMobile ? -40 : 0;
 
         return cards.map((_, i) => {
-          const centerOffset = i - (cards.length - 1) / 2;
+          const maxOffset = 3;
+
+          const centerOffset = Math.max(
+            -maxOffset,
+            Math.min(maxOffset, i - (cards.length - 1) / 2),
+          );
           return {
             x: centerOffset * xStep + globalXOffset,
-            y: centerOffset * yStep + globalYOffset,
+            y:
+              Math.sign(centerOffset) *
+                Math.pow(Math.abs(centerOffset), 1.2) *
+                yStep +
+              globalYOffset,
           };
         });
       };
@@ -45,7 +63,7 @@ const Projects = () => {
 
       gsap.set(cards, {
         x: isMobile ? 0 : 800,
-        y: window.innerHeight + 200,
+        y: vh + 100,
         opacity: 0,
       });
 
@@ -55,7 +73,7 @@ const Projects = () => {
           pin: true,
           scrub: 1,
           start: "top top",
-          end: () => `+=${cards.length * window.innerHeight * 1.2}`,
+          end: () => `+=${cards.length * vh * 1.2}`,
           invalidateOnRefresh: true,
 
           // This calculates the exact distance between cards and forces the scrollbar
@@ -99,10 +117,10 @@ const Projects = () => {
       ref={stageRef}
       className="h-screen w-full bg-transparent relative overflow-hidden z-10 flex flex-col items-center"
     >
-      <div className="w-full px-4 pt-14 md:pt-10 md:pr-16 z-20 relative flex justify-center md:justify-end pointer-events-none">
+      <div className="absolute top-16 md:top-20 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 lg:right-12 z-20 pointer-events-none">
         <ScrollFloat
           containerClassName="!my-0"
-          textClassName="text-[clamp(2rem,8vw,4rem)] md:text-7xl lg:text-8xl font-heading font-bold text-text-primary tracking-tighter text-center md:text-right select-none"
+          textClassName="inline-block text-[clamp(1.7rem,7vw,2.4rem)] md:text-[clamp(2.5rem,3.5vw,3.5rem)] font-heading font-bold text-text-primary tracking-tighter text-center md:text-right select-none"
           scrollStart="center bottom+=60%"
           scrollEnd="center center"
         >
@@ -111,7 +129,7 @@ const Projects = () => {
       </div>
 
       {/* The Card Stage */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none pt-24 md:pt-12">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none pt-28 md:pt-10 max-w-275 mx-auto left-0 right-0">
         {projectsContent.projects.map((project, i) => (
           <ProjectCard
             key={project.id}

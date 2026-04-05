@@ -97,11 +97,11 @@ const About = () => {
     <section
       id="about"
       ref={stageRef}
-      className="h-screen w-full relative overflow-hidden flex items-center justify-center"
+      className="min-h-screen w-full relative overflow-hidden flex items-start md:items-center pt-24 md:pt-0"
       style={{ backgroundColor: aboutContent.scenes[0].bgColor }}
     >
       {/* DESKTOP ONLY: Vertical "About Me" Anchor (Now fully color-synced) */}
-      <div className="hidden lg:flex absolute left-12 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20 opacity-50">
+      <div className="hidden lg:flex absolute left-6 lg:left-12 top-1/2 -translate-y-1/2 flex-col items-center gap-6 z-20 opacity-50">
         <span
           className="about-anchor-text text-sm font-mono uppercase tracking-[0.3em] rotate-180"
           style={{
@@ -123,53 +123,50 @@ const About = () => {
           ref={(el) => {
             framesRef.current[i] = el;
           }}
-          className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-10 w-full h-full"
+          className="absolute inset-0 flex flex-col items-center justify-start md:justify-center px-6 pt-24 pb-8 md:py-16 z-10 w-full h-full"
         >
-          <div className="max-w-4xl flex flex-col items-center">
+          <div className="max-w-3xl mx-auto flex flex-col items-center text-center gap-6 md:gap-10 lg:gap-12">
             {/* Headline */}
             <h2
-              className="animate-element text-5xl md:text-7xl lg:text-8xl font-heading font-black tracking-tight leading-[1.1] mb-6"
+              className="animate-element text-4xl md:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-tight text-balance"
               style={{ color: scene.headlineColor }}
             >
               {scene.headline}
             </h2>
-
             {/* Subtext */}
             {scene.subtext && (
               <p
-                className="animate-element text-xl md:text-3xl font-heading font-medium mb-6"
+                className="animate-element text-xl md:text-3xl font-heading font-medium"
                 style={{ color: scene.textColor }}
               >
                 {scene.subtext}
               </p>
             )}
-
             {/* Body */}
             {scene.body && (
               <p
-                className="animate-element text-lg md:text-xl font-sans max-w-2xl leading-relaxed"
+                className="animate-element text-md md:text-xl font-sans leading-relaxed max-w-2xl"
                 style={{ color: scene.textColor }}
               >
                 {scene.body}
               </p>
             )}
-
             {/* Stats */}
             {scene.stats && (
-              <div className="flex flex-wrap justify-center gap-10 md:gap-16 mt-12 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 pt-10 max-w-2xl mx-auto">
                 {scene.stats.map((stat, idx) => (
                   <div
                     key={idx}
                     className="animate-element flex flex-col items-center gap-2"
                   >
                     <span
-                      className="text-xl md:text-2xl font-heading font-bold"
+                      className="text-xl md:text-3xl font-heading font-bold"
                       style={{ color: scene.headlineColor }}
                     >
                       {stat.value}
                     </span>
                     <span
-                      className="text-xs font-mono tracking-widest uppercase opacity-70"
+                      className="text-xs font-mono tracking-widest uppercase opacity-60"
                       style={{ color: scene.textColor }}
                     >
                       {stat.label}
