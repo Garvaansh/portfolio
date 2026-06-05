@@ -21,10 +21,10 @@ jobs:
       - name: Setup Node.js Environment
         uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
+          package-manager-cache: false
 
       - name: Initialize Corepack
-        # Forces the runner to download and activate the exact Yarn binary defined in packageManager
         run: |
           corepack enable
           corepack install
