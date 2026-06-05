@@ -1,0 +1,45 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+
+      - name: Initialize Corepack
+        # Forces the runner to download and activate the exact Yarn binary defined in packageManager
+        run: |
+          corepack enable
+          corepack install
+
+      - name: Verify Package Manager State
+        # Exposes runtime environments to CI logs to accelerate debugging when build matrices fail
+        run: |
+          node --version
+          yarn --version
+
+      - name: Resolve Dependencies
+        run: yarn install --immutable
+
+      - name: Execute Code Quality Gates
+        run: |
+          yarn lint
+          yarn typecheck
+          yarn build

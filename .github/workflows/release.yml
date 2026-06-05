@@ -1,15 +1,14 @@
 name: Production Release Pipeline
 
+concurrency:
+  group: production
+  cancel-in-progress: false
+
 on:
   push:
     tags:
       - 'v*.*.*'
-
-# Queues concurrent releases sequentially rather than cancelling,
-# ensuring the deployment history maps exactly to the tag order.
-concurrency:
-  group: production
-  cancel-in-progress: false
+  workflow_dispatch: # Critical addition: Allows testing the Vercel deployment sequence without minting fake release tags
 
 jobs:
   deploy-production:
@@ -24,12 +23,15 @@ jobs:
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Validate SemVer Tag
+        # Bypasses regex validation if the workflow was triggered manually (workflow_dispatch) instead of via tag push
+        if: github.event_name == 'push'
         run: |
           TAG=${GITHUB_REF#refs/tags/}
           if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -37,45 +39,38 @@ jobs:
             exit 1
           fi
 
-      - name: Setup Node.js
+      - name: Initialize Corepack
+        run: corepack enable
+
+      - name: Setup Node.js Environment
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: yarn
 
-      - name: Enable Corepack
-        # Required for managing modern Yarn (v2+) environments seamlessly
-        run: corepack enable
+      - name: Verify Package Manager State
+        run: yarn --version
 
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+      - name: Resolve Dependencies
+        run: yarn install --immutable
 
-      - name: Lint Source Code
-        run: yarn lint
-
-      - name: Type Check
-        run: yarn typecheck
-
-      # Note: Standalone `yarn build` removed to prevent double-execution
-      
       - name: Install Vercel CLI
         run: npm install --global vercel@39.1.0
 
-      - name: Pull Vercel Environment Information
+      - name: Synchronize Cloud Environment
         run: |
           vercel pull \
             --yes \
             --environment=production \
             --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Generate Production Artifacts
-        # Executes the internal framework build command based on the Vercel project configuration
+      - name: Compile Production Artifacts
         run: |
           vercel build \
             --prod \
             --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Deploy to Production
+      - name: Execute Deployment
         id: deploy
         run: |
           DEPLOYMENT_URL=$(vercel deploy \
@@ -89,7 +84,7 @@ jobs:
         run: |
           echo "## Production Deployment" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- Version: $GITHUB_REF_NAME" >> $GITHUB_STEP_SUMMARY
+          echo "- Trigger: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
           echo "- Commit: $GITHUB_SHA" >> $GITHUB_STEP_SUMMARY
           echo "- Deployment URL: ${{ steps.deploy.outputs.deployment_url }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Status: Success" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: Success" >> $GITHUB_STEP_SUMMARY   
