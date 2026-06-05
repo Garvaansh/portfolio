@@ -26,3 +26,6 @@ dist-ssr
 *.sw?
 .yarn
 portfolio_archive/
+
+.vercel
+.env*
